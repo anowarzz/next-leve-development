@@ -1,4 +1,4 @@
-// ==>Learning Function <===
+{// ==>Learning Function <===
 
 // 1. Normal Function
 // 2. Arrow Function
@@ -25,3 +25,4 @@ const poorUser = {
 // ===> Array Mapping <===
 const arr: number[] = [4, 55, 34, 33];
 const newArray: number[] = arr.map((elem: number): number => elem * elem);
+}
