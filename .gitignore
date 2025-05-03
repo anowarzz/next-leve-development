@@ -1,0 +1,9 @@
+# Ignore all compiled output folders
+**/dist/
+
+# Ignore node_modules (if you use any npm packages)
+**/node_modules/
+
+# Ignore compiled JavaScript files
+**/*.js
+**/*.js.map
