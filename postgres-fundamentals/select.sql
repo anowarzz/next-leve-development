@@ -166,3 +166,12 @@ DELETE FROM students
   -- Delete specific rows
 DELETE from students
   WHERE grade = 'C' AND country = 'USA';
+
+
+
+SELECT * from students
+
+-- UPDATE COLUMN 
+UPDATE students
+  set email = 'default@gmail.com', age = 33
+  WHERE student_id = 47;
