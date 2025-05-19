@@ -50,34 +50,34 @@ SELECT DISTINCT blood_group from students;
 --  Data filtering
 -- Select Student from USA Only
 SELECT * from students
-WHERE country = 'USA';
+  WHERE country = 'USA';
 
 -- Select student with a grade in law
 SELECT * from students
-WHERE grade = 'A' and course = 'Law';
+  WHERE grade = 'A' and course = 'Law';
 
 
 -- Select student with blood group A
 SELECT * from students
-WHERE blood_group = 'A+';
+  WHERE blood_group = 'A+';
 
 -- select student from usa or australia
 SELECT * from students
-WHERE country = 'USA' OR country = 'Australia' ;
+  WHERE country = 'USA' OR country = 'Australia' ;
 
 
 -- select student from usa or australia with age 20
 SELECT * from students
-WHERE (country = 'USA' OR country = 'Australia') and age = 20 ;
+  WHERE (country = 'USA' OR country = 'Australia') and age = 20 ;
 
 
 -- age greater than 20
 SELECT * from students
-WHERE age > 20;
+  WHERE age > 20;
 
 --  country is not equal to usa
 SELECT * from students
-WHERE country <> 'USA';
+  WHERE country <> 'USA';
 
 SELECT * from students;
 
@@ -132,7 +132,7 @@ SELECT NULLIF(grade, 'B') FROM students WHERE first_name = 'Bob';
 
 -- IN Clause
 SELECT * from students
-WHERE country NOT IN ('USA', 'India', 'UK')
+  WHERE country NOT IN ('USA', 'India', 'UK')
 
 -- between 
 SELECT * from students
@@ -141,4 +141,13 @@ SELECT * from students
 
 --  between in dates
 SELECT * from students
-    WHERE dob BETWEEN '2000-01-01' and '2005-1-1' ORDER BY dob 
+    WHERE dob BETWEEN '2000-01-01' and '2005-1-1' ORDER BY dob ;
+
+-- LIKE for string match
+
+SELECT * from students
+  WHERE first_name LIKE 'A%'    
+
+--  with _ wildcard
+SELECT * from students
+  WHERE first_name ILIKE '___a_'
