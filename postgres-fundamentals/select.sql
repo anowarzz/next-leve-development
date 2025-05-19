@@ -151,3 +151,18 @@ SELECT * from students
 --  with _ wildcard
 SELECT * from students
   WHERE first_name ILIKE '___a_'
+
+-- LIMIT
+SELECT * from students
+  WHERE country IN ('USA', 'UK', 'India') LIMIT 5 OFFSET 2 ;
+
+-- Pagination
+SELECT * from students LIMIT 5 OFFSET 5 * 2 ;
+
+-- Deleting rows
+DELETE FROM students
+  WHERE grade = 'B';
+
+  -- Delete specific rows
+DELETE from students
+  WHERE grade = 'C' AND country = 'USA';
