@@ -1,3 +1,5 @@
+----------- Table Alteration Tasks ------------
+
 -- Creating student table
 CREATE TABLE students (
     id SERIAL PRIMARY KEY,
@@ -73,4 +75,47 @@ ALTER TABLE courses
 ALTER TABLE courses 
  DROP COLUMN course_fee;
 
-SELECT * from courses
+SELECT * from students
+
+
+------> Filtering and Logical Operation <-------
+-- selecting students with score 80 higher
+SELECT * FROM students
+    WHERE score > 80 AND score IS NOT NULL 
+
+-- excluding students fo EEE department
+SELECT * FROM students 
+    WHERE NOT department = 'EEE'
+
+
+-- Fetch students whose names start with ‘A’ using LIKE and ILIKE
+SELECT * FROM students
+    WHERE name LIKE 'A%';
+
+SELECT * FROM students
+    WHERE name ILIKE 'A%';
+
+-- Select all students whose age is between 18 and 25.
+
+SELECT * FROM students 
+    WHERE age BETWEEN 18 and 25 ;
+
+-- Retrieve rows using IN for a specific set of roll numbers.
+SELECT * from students
+    WHERE roll IN (1002, 1004, 1008, 1010)
+
+
+-------> Aggregate functions <----
+   -- Count how many students exist in the students table.
+ SELECT count(*) FROM students;  
+
+--  Find the average score of students in a specific department CSE
+
+SELECT avg(score) as "Average Score" FROM students
+WHERE department = 'CSE';
+
+-- Get the maximum age
+SELECT max(age) as "Maximum Age"from students
+
+-- Get the minimum age
+SELECT min(age) as "Maximum Age"from students
