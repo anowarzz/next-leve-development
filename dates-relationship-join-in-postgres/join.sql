@@ -45,3 +45,14 @@ INNER JOIN "user" as u on p.user_id = u.id
 
 
 ------> Left and Right Join <-----
+INSERT INTO post (title, user_id) VALUES
+('What a shinny bright day ☀️', NULL)
+
+-- left join
+SELECT * FROM post as p
+LEFT JOIN "user" as u on p.user_id = u.id
+
+
+-- right join
+SELECT * FROM post as p
+RIGHT JOIN "user" as u on p.user_id = u.id
