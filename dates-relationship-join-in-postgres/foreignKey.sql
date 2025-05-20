@@ -10,7 +10,7 @@ CREATE TABLE "user" (
 CREATE TABLE post (
     id SERIAL PRIMARY KEY,
     title text NOT NULL,
-    user_id INTEGER REFERENCES "user" (id)
+    user_id INTEGER REFERENCES "user" (id) ON DELETE CASCADE
 )
 
 
@@ -33,6 +33,8 @@ INSERT INTO post (title, user_id) VALUES ('Enjoying a sunny day with Akash! â˜€ï
 
 SELECT * from post
 
+SELECT * from "user"
+
 
 -- Insertion constraint on INSERT post
 -- Attempting to insert a post with a user ID that does not exist
@@ -42,7 +44,22 @@ SELECT * from post
 
 
 
-
-
 -- can't insert a null user id
 INSERT INTO post (title, user_id) VALUES ('test', NULL)
+
+
+
+DROP Table "user"
+
+DROP TABLE post
+
+----------> DELETION <-------
+--> Deletition constraint on DELETE user
+
+-- Restrict Deletion ---> ON DELETE RESTRICT / ON DELETE NO ACTION (DEFAULT)
+-- Cascading Deletion --> ON DELETE CASCADE
+-- Setting NUll ---> ON DELETE SET NULL
+-- Set default value  ---> ON DELETE SET DEFAULT
+
+DELETE FROM "user"
+WHERE id = 4
