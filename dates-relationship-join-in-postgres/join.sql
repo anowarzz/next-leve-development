@@ -56,3 +56,16 @@ LEFT JOIN "user" as u on p.user_id = u.id
 -- right join
 SELECT * FROM post as p
 RIGHT JOIN "user" as u on p.user_id = u.id
+
+
+--->   FULL JOIN ---->
+
+SELECT * FROM post FULL JOIN "user" on post.user_id = "user".id;
+
+
+
+
+
+
+
+
