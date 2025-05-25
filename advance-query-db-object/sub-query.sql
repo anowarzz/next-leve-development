@@ -75,7 +75,7 @@ FROM employee
 
 SELECT * --// outer query
 FROM (
-        SELECT department_name, sum(salary)
+        SELECT department_name, sum(salary) 
         FROM employee
         GROUP BY
             department_name
