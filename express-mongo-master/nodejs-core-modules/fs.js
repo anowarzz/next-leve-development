@@ -7,11 +7,10 @@ file read / i/o
 2. asynchronous way
 file read => single thread => event loop => thread pool => task complete
  /*/
- const fs = require("fs")
+const fs = require("fs");
 
+const text = "Learning File System";
+fs.writeFileSync("./hello.txt", text);
 
- const text = "Learning File System"
- fs.writeFileSync("./hello.txt", text)
- 
- const data = fs.readFileSync("./hello.txt", {encoding: 'utf-8'})
- console.log(data);
+const data = fs.readFileSync("./hello.txt", { encoding: "utf-8" })
+console.log(data);
