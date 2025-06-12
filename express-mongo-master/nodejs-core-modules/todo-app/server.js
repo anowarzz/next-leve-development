@@ -72,6 +72,46 @@ const server = http.createServer((req, res) => {
     res.end(stringifyTodo);
   }
 
+  // update a todo
+
+  // ==> updating a todo <===
+  else if (pathname === "/todos/update-todo" && req.method === "PATCH") {
+    const title = url.searchParams.get("title");
+
+    let data = "";
+
+    req.on("data", (chunk) => {
+      data = data + chunk;
+    });
+
+    req.on("end", () => {
+      const { body } = JSON.parse(data);
+
+      const allTodos = fs.readFileSync(filePath, { encoding: "utf-8" });
+      parsedAllTodos = JSON.parse(allTodos);
+
+      const todoIndex = parsedAllTodos.findIndex(
+        (todo) => todo.title === title
+      );
+      parsedAllTodos[todoIndex].body = body;
+
+      // writing the updated todo list
+      fs.writeFileSync(filePath, JSON.stringify(parsedAllTodos, null, 2), {
+        encoding: "utf-8",
+      });
+
+      res.writeHead(201, {
+        "content-type": "application/json",
+      });
+      res.end(
+        JSON.stringify(
+          { title, body, createdAt: parsedAllTodos[todoIndex].createdAt },
+          null,
+          2
+        )
+      );
+    });
+  }
   // no route found
   else {
     res.end("Route not found");
