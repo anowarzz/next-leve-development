@@ -1,35 +1,59 @@
 const http = require("http");
+const path = require("path");
+const fs = require("fs");
 
-const data = [
-  {
-    title: "prisma",
-    body: "Learning prisma",
-    createdAt: "5/18/2025, 1:25:02 AM",
-  },
-  {
-    title: "typescript",
-    body: "learning node",
-    createdAt: "5/18/2025, 1:25:12 AM",
-  },
-];
+const filePath = path.join(__dirname, "./db/todo.json");
 
 const server = http.createServer((req, res) => {
   // server listening
   if (req.url === "/") {
     res.end("Welcome to the Todo App server");
   }
+
   // get all todos
   if (req.url === "/todos" && req.method === "GET") {
+    const data = fs.readFileSync(filePath, { encoding: "utf-8" });
+
     res.writeHead(201, {
       "content-type": "application/json",
     });
 
-    res.end(JSON.stringify(data));
+    res.end(data);
   }
+
+
   // creating a todo
   else if (req.url === "/todos/create-todo" && req.method === "POST") {
-    res.end("Created a new todo");
-  } else {
+    let data = "";
+
+    req.on("data", (chunk) => {
+      data = data + chunk;
+    });
+
+    req.on("end", () => {
+      const { title, body } = JSON.parse(data);
+      const createdAt = new Date().toLocaleString();
+
+      // reading all the todos
+      const allTodos = fs.readFileSync(filePath, { encoding: "utf-8" });
+      const parsedAllTodos = JSON.parse(allTodos);
+      // pushing new todo
+      parsedAllTodos.push({ title, body, createdAt });
+
+      // writing the updated todo list
+      fs.writeFileSync(filePath, JSON.stringify(parsedAllTodos, null, 2), {
+        encoding: "utf-8",
+      });
+
+      res.writeHead(201, {
+        "content-type": "application/json",
+      });
+      res.end(JSON.stringify({ title, body, createdAt }, null, 2));
+    });
+  }
+
+  // no route found
+  else {
     res.end("Route not found");
   }
 });
