@@ -112,6 +112,41 @@ const server = http.createServer((req, res) => {
       );
     });
   }
+
+  // ==> delete a todo <===
+  else if (pathname === "/todos/delete-todo" && req.method === "DELETE") {
+    const title = url.searchParams.get("title");
+
+    const allTodos = fs.readFileSync(filePath, { encoding: "utf-8" });
+    const parsedAllTodos = JSON.parse(allTodos);
+
+    const todoToDelete = parsedAllTodos.find((todo) => todo.title === title);
+
+    const todosAfterDelete = parsedAllTodos.filter(
+      (todo) => todo.title !== todoToDelete.title
+    );
+
+    // writing the updated todo list
+    fs.writeFileSync(filePath, JSON.stringify(todosAfterDelete, null, 2), {
+      encoding: "utf-8",
+    });
+
+    res.writeHead(200, {
+      "content-type": "application/json",
+    });
+
+    res.end(
+      JSON.stringify(
+        {
+          message: "Todo Deleted Successfully",
+          data: todoToDelete,
+        },
+        null,
+        2
+      )
+    );
+  }
+
   // no route found
   else {
     res.end("Route not found");
