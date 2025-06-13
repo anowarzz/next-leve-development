@@ -3,7 +3,19 @@ import fs from "fs";
 import path from "path";
 
 const app: Application = express();
+
 app.use(express.json());
+
+const todosRouter = express.Router();
+app.use("/todos", todosRouter);
+
+todosRouter.get("/", (req: Request, res: Response) => {
+  const data = fs.readFileSync(filePath, { encoding: "utf-8" });
+  res.json({
+    message: "from todo router",
+    data,
+  });
+});
 
 const filePath = path.join(__dirname, "../../db/todo.json");
 
@@ -12,8 +24,10 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World From Express");
 });
 
-// get all todos
-app.get("/todos", (req: Request, res: Response) => {
+// get sigle todo
+app.get("/todos/:title/:body", (req: Request, res: Response) => {
+  console.log("From params", req.params);
+
   const data = fs.readFileSync(filePath, { encoding: "utf-8" });
   res.json(data);
 });
@@ -25,9 +39,4 @@ app.post("/todos/create-todo", (req: Request, res: Response) => {
 
 export default app;
 
-/**
- * Basic File structure
- * server - server handling like - starting, closing error handling of server. only related to server
- * app file - routing handle, middleware, route related error
- * app folder - app business logic handling like create read update delete, database related works
- */
+// [app => {express.json} => [todos route] [Root route '/']] ]
