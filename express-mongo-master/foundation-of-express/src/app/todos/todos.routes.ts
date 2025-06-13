@@ -1,10 +1,7 @@
 import express, { Request, Response } from "express";
-import fs from "fs";
-import path from "path";
+import { ObjectId } from "mongodb";
 import { client } from "../../config/mongodb";
 export const todosRouter = express.Router();
-
-const filePath = path.join(__dirname, "../../../db/todo.json");
 
 // Get all todos
 todosRouter.get("/", async (req: Request, res: Response) => {
@@ -33,18 +30,33 @@ todosRouter.post("/create-todo", async (req: Request, res: Response) => {
   res.json(todos);
 });
 
-// get sigle todo
-todosRouter.get("/:title", (req: Request, res: Response) => {
-  console.log("From params", req.params);
+// get single todo
+todosRouter.get("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-  const data = fs.readFileSync(filePath, { encoding: "utf-8" });
-  res.json(data);
+  const db = await client.db("todosDB");
+  const collection = await db.collection("todos");
+  const todo = await collection.findOne({ _id: new ObjectId(id) });
+
+  res.json(todo);
 });
 
 // update a todo
-todosRouter.put("/update-todo/:title", (req: Request, res: Response) => {
-  console.log("Todo is updating");
-  res.end();
+todosRouter.put("/update-todo/:id", async (req: Request, res: Response) => {
+  const db = await client.db("todosDB");
+  const collection = await db.collection("todos");
+
+  const id = req.params.id;
+  const { title, description, priority, isCompleted } = req.body;
+  const filter = { _id: new ObjectId(id) };
+
+  const updatedTodo = await collection.updateOne(
+    filter,
+    { $set: { title, description, priority, isCompleted } },
+    { upsert: true }
+  );
+
+  res.json(updatedTodo);
 });
 
 // delete a todo
