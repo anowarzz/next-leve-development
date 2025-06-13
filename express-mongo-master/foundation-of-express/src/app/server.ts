@@ -1,19 +1,9 @@
 import "dotenv/config"; // Load environment variables first
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { client } from "../config/mongodb";
 import app from "./app";
 
 let server;
 const PORT = process.env.PORT || 5000;
-
-const uri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.udcvnpg.mongodb.net/todosDB?retryWrites=true&w=majority&appName=Cluster0`;
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
 
 const bootstrap = async () => {
   await client.connect();
