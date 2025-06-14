@@ -14,7 +14,7 @@ _A comprehensive learning repository covering TypeScript, Backend Development, a
 
 </div>
 
-## 📚 Course Overview
+## 📚 Overview
 
 This repository contains all practical exercises, projects, and learning materials from the **Next Level Development** course by Programming Hero. The course is structured into three main tracks, each focusing on essential web development technologies.
 
@@ -50,26 +50,6 @@ _Master relational databases with PostgreSQL_
 | **[PostgreSQL Fundamentals](./rdbms-rockstar/postgres-fundamentals/)**             | Tables, Queries, Data Types            | ✅     |
 | **[Dates & Relationships](./rdbms-rockstar/dates-relationship-join-in-postgres/)** | Joins, Foreign Keys, Date Functions    | ✅     |
 | **[Advanced Queries](./rdbms-rockstar/advance-query-db-object/)**                  | Subqueries, Functions, Triggers, Views | ✅     |
-
-## 🎯 Learning Path Recommendations
-
-### 🔰 Beginner Track
-
-1. Start with [TypeScript Basic Types](./typescript-technocrat/basic-types-of-ts/)
-2. Learn [Node.js Fundamentals](./express-mongo-master/fundamentals-of-nodejs/)
-3. Practice [PostgreSQL Fundamentals](./rdbms-rockstar/postgres-fundamentals/)
-
-### 🔥 Intermediate Track
-
-1. Dive into [Advanced TypeScript](./typescript-technocrat/advance-types-of-ts/)
-2. Build with [Express Foundation](./express-mongo-master/foundation-of-express/)
-3. Master [Database Relationships](./rdbms-rockstar/dates-relationship-join-in-postgres/)
-
-### ⚡ Advanced Track
-
-1. Master [OOP in TypeScript](./typescript-technocrat/oop-typescript/)
-2. Explore [MongoDB Queries](./express-mongo-master/in-depth-mongodb-queries/)
-3. Create [Advanced Database Objects](./rdbms-rockstar/advance-query-db-object/)
 
 ## 🛠️ Technologies & Tools
 
@@ -112,10 +92,6 @@ _Master relational databases with PostgreSQL_
 - [x] MongoDB Operations
 - [x] PostgreSQL Mastery
 - [x] Advanced Database Concepts
-
-## 📄 License
-
-This project is for educational purposes as part of the Programming Hero course.
 
 ---
 
