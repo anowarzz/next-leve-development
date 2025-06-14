@@ -20,9 +20,43 @@ app.get(
     next();
   },
 
-  (req: Request, res: Response) => {
-    res.send("Hello World From Express");
+  (req: Request, res: Response, next: NextFunction) => {
+    try {
+      res.send("Hello World From Express");
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+app.get(
+  "/error",
+
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      res.send("Welcome to error er duniya");
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
 export default app;
+
+// route error Handler
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found",
+  });
+});
+
+// global error Handler
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  if (error) {
+    res.status(400).json({
+      success: false,
+      message: "something went wrong",
+    });
+  }
+});
