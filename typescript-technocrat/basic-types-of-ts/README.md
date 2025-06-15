@@ -27,6 +27,8 @@ This module covers the fundamental concepts of TypeScript, from basic setup to c
 
 ## 📝 My Learning Notes
 
+<br>
+
 ## Introduction to TypeScript
 
 **What Is TypeScript ?**
@@ -50,6 +52,8 @@ TypeScript is an Object Oriented Programming Language that is built on top Of Ja
 - Over Engineering.
 - Migration Challenges
 
+<br>
+
 ## Write Your First TypeScript Program
 
 `tsc - - init` to configure the typescript
@@ -59,6 +63,8 @@ and separate the source file and the generated JS file
 TS Config ফাইলে `RootDir` এর মধ্যে যেই Folder এর Path দেয়া থাকবে সেই Folder এ সব TS ফাইল থাকবে ।
 
 এবং `OutDir` এর মধ্যে যেই Folder এর Path দেয়া থাকবে সেখানে সব জেনারেট হওয়া JavaScript ফাইল গুলা থাকবে ।
+
+</br>
 
 ## Basic Data Types of TypeScript 📄 [→ Code](./src/basicTypes.ts)
 
@@ -79,11 +85,14 @@ TS Config ফাইলে `RootDir` এর মধ্যে যেই Folder এ�
 
 Run Time এ আমরা কখনো Typescript পাবো না, কারন Typescript Run ই হবেনা এটা আগে Javscript এ Convert হবে । তাই Typescript এর Type গুলোকে বলা হয় Static Type । এবং JavaScript এর Type গুলোকে বলা হয় Dynamic Type ।
 
+</br>
+
 ## Object, Optional and Literal Types 📄 [→ Code](./src/object-optional-literal.ts)
 
 - Object এর প্রতিটা Property এর Type Define করে নিতে হবে আগে । Type Define করার সময় কোন Property যদি থাকতেও পারে আবার নাও থাকতে পারে তাহলে তার জন্য Optional ? ব্যবহার করতে হবে ।
 - Object এর কোন Property এর Value যদি Type define করার সময়ই Fixed করে দেয়া হয় , তাহলে ওই Value টাই ঐ Property এর জন্য Type হয়ে যায় এবং তা আর পরে পরিবর্তন করা যায় না । তাকে বলা হয় Literal Type
 
+</br>
 ## Functions in TypeScript 📄 [→ Code](./src/function.ts)
 
 Function লিখার সময় Parameter গুলোর Value কি Type এর হবে তা লিখে দিতে হবে । এবং Function টি কোন ধরনের Value Return করবে তা ও লিখে দিতে হবে ।
@@ -120,6 +129,8 @@ const arr: number[] = [3, 53, 6];
 const newArray: number[] = arr.map((elem: number): number => elem * elem);
 ```
 
+</br>
+
 ## Spread and Rest Operator 📄 [→ Code](./src/spreadNRestOperator.ts)
 
 1. Rest Operator (Three dots: ...):
@@ -131,6 +142,8 @@ const newArray: number[] = arr.map((elem: number): number => elem * elem);
    - Example (array): **`const arr1 = [1, 2, 3];`**
    - **`onst arr2 = [...arr1, 4, 5];`**
    - Example (object): **`const obj1 = { x: 1, y: 2 }; const obj2 = { ...obj1, z: 3 };`**
+
+</br>
 
 ## Destructuring in TypeScript 📄 [→ Code](./src/destructuring.ts)
 
@@ -158,6 +171,8 @@ const [,, bestFriend, ...rest] = myFriends;
 
 }
 ```
+
+</br>
 
 ## Type Alias in TypeScript 📄 [→ Code](./src/typeAlias.ts)
 
@@ -208,10 +223,14 @@ example
 }
 ```
 
+</br>
+
 ## Union and Intersection Types 📄 [→ Code](./src/union-intersection.ts)
 
 - Union Type: In TypeScript, a union type allows a variable to hold values of multiple types, separated by a vertical bar (|), such as **`string | number`**.
 - Intersection Type: Intersection types combine multiple types into one, creating a type that has all the properties of each type, denoted with an ampersand (&), like **`TypeA & TypeB`**.
+
+</br>
 
 ## Ternary, Optional Chaining & Nullish Coalescing Operator 📄 [→ Code](./src/ternary-nullish.ts)
 
@@ -236,14 +255,16 @@ example
 
 3.  Ternary Operator (Conditional Operator): - It's a concise way to conditionally choose one of two values based on a condition.
 
-    - Example:
+        - Example:
 
-    ```tsx
-    javascriptCopy code
-    const isRaining = true;
-    const weather = isRaining ? "Take an umbrella" : "Enjoy the sun";
+        ```tsx
+        javascriptCopy code
+        const isRaining = true;
+        const weather = isRaining ? "Take an umbrella" : "Enjoy the sun";
 
-    ```
+        ```
+
+    </br>
 
 ## Never, Unknown and Nullable Types 📄 [→ Code](./src/never-unknown-nullable.ts)
 

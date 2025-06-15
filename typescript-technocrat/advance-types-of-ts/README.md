@@ -27,6 +27,8 @@ This module covers advanced TypeScript concepts including generics, type asserti
 
 ## 📝 My Learning Notes
 
+<br>
+
 ## Type Assertion / Type Narrowing 📄 [→ Code](./src/type-assertion.ts)
 
 **Type assertion** is a way to tell the TypeScript compiler that you know more about the type of a value than it does,
@@ -37,6 +39,8 @@ TypeScript এ `as` ব্যবহার করার মাধ্যমে য
 const value: unknown = "Hello, TypeScript!";
 const length = (value as string).length; // Type assertion to treat 'value' as a string.
 ```
+
+<br>
 
 ## Interface, Type vs Interface 📄 [→ Code](./src/type-interface.ts)
 
@@ -88,6 +92,8 @@ interface Add2 {
 
 const add: Add = (num1, num2) => num1 + num2;
 ```
+
+<br>
 
 ## Introduction to Generics 📄 [→ Code](./src/generic.ts)
 
@@ -169,6 +175,8 @@ Generics in TypeScript are like placeholders for data types. They allow Us to de
 }
 ```
 
+<br>
+
 ## Function With Generics 📄 [→ Code](./src/function-with-generic.ts)
 
 ```tsx
@@ -227,23 +235,32 @@ Generics in TypeScript are like placeholders for data types. They allow Us to de
 }
 ```
 
+<br>
+
 ## Constraints in TypeScript 📄 [→ Code](./src/constraints.ts)
 
 Generic Type এর মধ্যে যদি কিছু Property এবং এদের Type গুলো Enforce করে দেয়া হয় যে এগুলো থাকতেই হবে তাকে Constraints বলে ।
 
+<br>
 ## Constraints Using Key Of 📄 [→ Code](./src/constraints-keyof.ts)
 
 Function এর মধ্যে কোন Object পাঠানো হলে বা কোন Object এর Property গুলোর ব্যবহার করতে হলে সেই Object এর সবগুলো Property কে এক সাথে Mention করার জন্য key of ব্যবহার করা হয় ।
 
 key of এর মাধ্যমে একটি type বের সবগুলো key দিয়ে union type তৈরী হয় ।
 
+<br>
+
 ## Asynchronous TypeScript 📄 [→ Code](./src/asynchronous-typescript.ts)
 
 Promise Handling In Typescript Using types Practiced
 
+<br>
+
 ## Conditional Types 📄 [→ Code](./src/conditional-types.ts)
 
 Typescript এ কোন একটি Type এর মান যদি অন্য একটি Type এর ঊপর নির্ভর করে কোন একটি Condition এর উপর ভিত্তি করে তাহলে তাকে Conditional Type বলে ।
+
+<br>
 
 ## Mapped Types 📄 [→ Code](./src/mapped-types.ts)
 
@@ -263,6 +280,8 @@ type AreaString = {
   [key in keyof AreaNumber]: string;
 };
 ```
+
+<br>
 
 ## Utility Types 📄 [→ Code](./src/utility-types.ts)
 
