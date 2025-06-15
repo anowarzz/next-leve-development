@@ -122,6 +122,7 @@ Super key is a Attribute or set of attribute by which we can identify each row u
 4. Composite Key
 5. Foreign Key
 
+</br>
 ## Candidate, Primary, Alternate and Composite Key
 
 #### Candidate Key
