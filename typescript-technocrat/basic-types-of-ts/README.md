@@ -60,7 +60,7 @@ TS Config ফাইলে `RootDir` এর মধ্যে যেই Folder এ�
 
 এবং `OutDir` এর মধ্যে যেই Folder এর Path দেয়া থাকবে সেখানে সব জেনারেট হওয়া JavaScript ফাইল গুলা থাকবে ।
 
-## Basic Data Types of TypeScript
+## Basic Data Types of TypeScript 📄 [→ Code](./src/basicTypes.ts)
 
 ---
 
@@ -79,12 +79,12 @@ TS Config ফাইলে `RootDir` এর মধ্যে যেই Folder এ�
 
 Run Time এ আমরা কখনো Typescript পাবো না, কারন Typescript Run ই হবেনা এটা আগে Javscript এ Convert হবে । তাই Typescript এর Type গুলোকে বলা হয় Static Type । এবং JavaScript এর Type গুলোকে বলা হয় Dynamic Type ।
 
-## Object, Optional and Literal Types
+## Object, Optional and Literal Types 📄 [→ Code](./src/object-optional-literal.ts)
 
 - Object এর প্রতিটা Property এর Type Define করে নিতে হবে আগে । Type Define করার সময় কোন Property যদি থাকতেও পারে আবার নাও থাকতে পারে তাহলে তার জন্য Optional ? ব্যবহার করতে হবে ।
 - Object এর কোন Property এর Value যদি Type define করার সময়ই Fixed করে দেয়া হয় , তাহলে ওই Value টাই ঐ Property এর জন্য Type হয়ে যায় এবং তা আর পরে পরিবর্তন করা যায় না । তাকে বলা হয় Literal Type
 
-## Functions in TypeScript
+## Functions in TypeScript 📄 [→ Code](./src/function.ts)
 
 Function লিখার সময় Parameter গুলোর Value কি Type এর হবে তা লিখে দিতে হবে । এবং Function টি কোন ধরনের Value Return করবে তা ও লিখে দিতে হবে ।
 
@@ -120,7 +120,7 @@ const arr: number[] = [3, 53, 6];
 const newArray: number[] = arr.map((elem: number): number => elem * elem);
 ```
 
-## Spread and Rest Operator
+## Spread and Rest Operator 📄 [→ Code](./src/spreadNRestOperator.ts)
 
 1. Rest Operator (Three dots: ...):
    - Use in function parameters to collect multiple arguments into an array.
@@ -132,7 +132,7 @@ const newArray: number[] = arr.map((elem: number): number => elem * elem);
    - **`onst arr2 = [...arr1, 4, 5];`**
    - Example (object): **`const obj1 = { x: 1, y: 2 }; const obj2 = { ...obj1, z: 3 };`**
 
-## Destructuring in TypeScript
+## Destructuring in TypeScript 📄 [→ Code](./src/destructuring.ts)
 
 Destructuring in TypeScript is a convenient way of extracting multiple values from data stored in objects and arrays. It allows us to unpack values from arrays, or properties from objects, into distinct variables.
 
@@ -159,7 +159,7 @@ const [,, bestFriend, ...rest] = myFriends;
 }
 ```
 
-## Type Alias in TypeScript
+## Type Alias in TypeScript 📄 [→ Code](./src/typeAlias.ts)
 
 Type alias in TypeScript is a way to give a new name for a type which can be used to refer to it later.
 
@@ -208,12 +208,12 @@ example
 }
 ```
 
-## Union and Intersection Types
+## Union and Intersection Types 📄 [→ Code](./src/union-intersection.ts)
 
 - Union Type: In TypeScript, a union type allows a variable to hold values of multiple types, separated by a vertical bar (|), such as **`string | number`**.
 - Intersection Type: Intersection types combine multiple types into one, creating a type that has all the properties of each type, denoted with an ampersand (&), like **`TypeA & TypeB`**.
 
-## Ternary, Optional Chaining & Nullish Coalescing Operator
+## Ternary, Optional Chaining & Nullish Coalescing Operator 📄 [→ Code](./src/ternary-nullish.ts)
 
 1.  Nullish Coalescing Operator (??):
 
@@ -245,7 +245,7 @@ example
 
     ```
 
-## Never, Unknown and Nullable Types
+## Never, Unknown and Nullable Types 📄 [→ Code](./src/never-unknown-nullable.ts)
 
 1. **Never Type**:
 
