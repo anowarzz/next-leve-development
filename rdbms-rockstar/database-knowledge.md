@@ -1,3 +1,9 @@
+<div style="display: flex; justify-content: center;">
+
+![Modules](https://img.shields.io/badge/Module-5-blue?style=for-the-badge)
+
+</div>
+
 ## Understanding Data, Information and Database\*\*
 
 **What is Database ?**

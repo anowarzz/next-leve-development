@@ -1,3 +1,10 @@
+<div style="display: flex; justify-content: center;">
+
+![Modules](https://img.shields.io/badge/Module-6-blue?style=for-the-badge)
+
+</div>
+
+
 ## Understanding Anomalies
 
 **Anomalies in databases refer to inconsistencies or unexpected issues that can occur during data manipulation or retrieval .**

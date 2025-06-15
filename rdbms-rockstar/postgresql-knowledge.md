@@ -1,3 +1,9 @@
+<div style="display: flex; justify-content: center;">
+
+![Modules](https://img.shields.io/badge/Module-7-red?style=for-the-badge)
+
+</div>
+
 ## PSQL and its Default Behavior, Creating Database
 
 PSQL Command

@@ -5,6 +5,8 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![OOP](https://img.shields.io/badge/OOP-Concepts-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+![Modules](https://img.shields.io/badge/Module-3-red?style=for-the-badge)
+
 
 _Module 3 of TypeScript Technocrat Track_
 

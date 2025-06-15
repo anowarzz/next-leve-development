@@ -5,8 +5,8 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-Database-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+![Modules](https://img.shields.io/badge/Module-8-blue?style=for-the-badge)
 
-_Module 1 of RDBMS Rockstar Track_
 
 </div>
 
