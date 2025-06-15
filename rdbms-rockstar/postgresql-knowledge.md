@@ -1,6 +1,6 @@
 <div style="display: flex; justify-content: center;">
 
-![Modules](https://img.shields.io/badge/Module-7-red?style=for-the-badge)
+![Modules](https://img.shields.io/badge/Module-7-blue?style=for-the-badge)
 
 </div>
 
