@@ -50,10 +50,6 @@ TypeScript is an Object Oriented Programming Language that is built on top Of Ja
 - Over Engineering.
 - Migration Challenges
 
-## Install TypeScript and Node Version Manager
-
-Installed NVM (Node Version Manager) And Typescript
-
 ## Write Your First TypeScript Program
 
 `tsc - - init` to configure the typescript
