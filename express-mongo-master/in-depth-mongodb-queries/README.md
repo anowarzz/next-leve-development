@@ -1,8 +1,42 @@
-### What is MongoDB ?
+# 🍃 In-Depth MongoDB Queries - Learning Notes
 
-MongoDB is a NoSQL database storing data in JSON-like documents. NoSQL databases break from traditional relational models, ideal for managing vast data. MongoDB stands out for its scalability , flexibility , and performance trusted by giants like Google, Facebook and eBay.
+<div align="center">
 
-#### Why MongoDB ?
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Queries](https://img.shields.io/badge/Queries-Advanced-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+![Module](https://img.shields.io/badge/Module-15-red?style=for-the-badge)
+
+_Mastering MongoDB Query Operations & CRUD_
+
+</div>
+
+---
+
+## 📚 Module Overview
+
+This module covers comprehensive MongoDB querying techniques, from basic CRUD operations to advanced querying with operators and aggregation principles. These are my personal learning notes.
+
+## 🎯 Topics Covered
+
+- ✅ MongoDB Basics & Core Concepts
+- ✅ CRUD Operations (Create, Read, Update, Delete)
+- ✅ Query & Comparison Operators
+- ✅ Logical Operators & Complex Queries
+- ✅ Update Operations & Modifiers
+- ✅ Advanced Query Techniques
+
+---
+
+<br>
+
+## MongoDB Introduction
+
+### What is MongoDB?
+
+MongoDB is a NoSQL database storing data in JSON-like documents. NoSQL databases break from traditional relational models, ideal for managing vast data. MongoDB stands out for its scalability, flexibility, and performance trusted by giants like Google, Facebook and eBay.
+
+### Why MongoDB?
 
 MongoDB is a NoSQL database that provides a flexible schema, allowing developers to store data in a more natural way. It is designed to handle large volumes of data and can scale horizontally across many servers. MongoDB is particularly well-suited for applications that require high availability, real-time analytics, and rapid development cycles. It provides:
 
@@ -20,7 +54,9 @@ MongoDB is a NoSQL database that provides a flexible schema, allowing developers
 - Free Atlas Database
 - MongoDB Compass (GUI)
 
-## insert, insertOne, find, findOne, field filtering, projecting
+<br>
+
+## CRUD Operations: Insert & Find
 
 - Single Document , Insert করার জন্য `InsertOne()` এবং Multiple Document Insert করার জন্য `InsertMany()` ব্যবহার করতে হয় । Multiple Document , Insert করার জন্য Array of object আকারে Insert করতে হয় ।
 
@@ -61,7 +97,9 @@ Document গুলো থেকে শুধু কিছু নির্দি�
 
 Project শুধুমাত্র Find() এর সাথে কাজ করবে FindOne() এর সাথে কাজ করবে না । FindOne এর জন্য Filed Filtering করতে হবে
 
-## $eq, $neq, $gt, $lt, $gte, $lte
+<br>
+
+## Comparison Operators: $eq, $neq, $gt, $lt, $gte, $lte
 
 যার নিজস্ব মান নেই কিন্তু অন্যের মান কে পরিবর্তন করতে পারে তাকে Operator বলে ।
 
@@ -115,7 +153,9 @@ Operator ব্যবহার করার জন্য প্রথমেই �
 
 এভাবে Query করলে Age field এর উপর ভিত্তি করে Descending Order এ Sort করে দিবে ।
 
-## $in, $nin, implicit and condition
+<br>
+
+## Inclusion/Exclusion Operators: $in, $nin
 
 - একই Field এর উপর কমা দিয়ে একই সাথে দুটি শর্ত ব্যবহার করলে বা একাধিক শর্ত ব্যবহার করলে তাকে Implicit and বলা হয় । যেমন :
 
@@ -161,7 +201,9 @@ db.test
   .sort({ age: 1 });
 ```
 
-## $and, $or, implicit vs explicit
+<br>
+
+## Logical Operators: $and, $or
 
 একই Field এর মধ্যে Implicit And ব্যবহার করতে হলে একই Bracket এর মধ্যে Condition গুলো লিখতে হবে ।
 
@@ -231,7 +273,9 @@ db.test
   .sort({ age: 1 });
 ```
 
-## $exists, $type,$size
+<br>
+
+## Element Operators: $exists, $type, $size
 
 - কোন Document এ একটি নির্দিষ্ট Field বিদ্যমান আছে কিনা তা যাচাই করার জন্য `$exist` ব্যবহার করা হয় । এখানে age ফিল্ড exists করে এমন Data গুলো দেয়া হবে ।
 
@@ -263,7 +307,9 @@ db.test.find({ friends: { $size: 0 } }).project({ friends: 1 });
 db.test.find({ company: { $type: "null" } }).projection({ company: 1 });
 ```
 
-## $all , $elemMatch
+<br>
+
+## Array Operators: $all, $elemMatch
 
 Find All the Documents that has Cooking on the interests array
 
@@ -308,7 +354,9 @@ db.test
   .project({ skills: 1 });
 ```
 
-## $set, $addToSet, $push (UPDATE OPERATOR)
+<br>
+
+## Update Operators: $set, $addToSet, $push
 
 - `$set` ব্যবহার করে মূলত Primitive value গুলো update করতে হয় । Non-Primitive ( Object / Array ) ও Update করা যায় , তবে set পুর্বের সব Value Replace করে দেয় এবং শুধু নতুন Value টা বসিয়ে দেয় তাই সতর্ক থাকতে হবে ।
 - `$addToSet` এর মাধ্যমে পুর্বের Value এর সাথে নতুন Value এড করে Update করা হয় । `$addToSet` এর মাধ্যমে Array তে নতুন Value এড করা যাবে কিন্তু কোন Duplicate Value এড হবে না ।
@@ -345,7 +393,9 @@ db.test.updateOne(
 
 - `$Push` এর মাধ্যমে কোন নতুন Value Add করা যায় , তবে `$push` আগের Same Value থাকলেও তার Duplicate Entry করে দিবে । `$Push` এর মাধ্যমে Value Duplicate হতে পারে ।
 
-## $unset, $pop, $pull, $pullAll
+<br>
+
+## Remove Operators: $unset, $pop, $pull, $pullAll
 
 - `$unset` ব্যবহার করে কোন Document এর একটি Particular Field remove করে দেয়া যায় । `$unset` ব্যবহার করার পর Field এর নামের পরে Empty string “ ” বা 1 ব্যবহার করতে হবে ।
 
@@ -391,7 +441,9 @@ db.test.updateOne(
 );
 ```
 
-## More Use Of $Set and Positional Operator
+<br>
+
+## Advanced Updates: $Set and Positional Operator
 
 - `$set` ব্যবহার করে Object এর কোন Property এর ভ্যালু ও Change করা যায় ।
 
@@ -425,6 +477,8 @@ db.test.updateOne(
 );
 ```
 
+---
+
 - `$inc` ব্যবহার করে কোন Field এর মান Increment করা হয় ।
 
 ```javascript
@@ -440,7 +494,9 @@ db.test.updateOne(
 );
 ```
 
-## Delete documents, Drop collection
+<br>
+
+## Delete Operations: Removing Documents and Collections
 
 - `db.collection.deleteMany()` এর মাধ্যমে একসাথে অনেকগুলো Documents Delete করা যায় ।
 
@@ -460,3 +516,10 @@ db.test.deleteOne({ _id: ObjectId("587589459009945") });
 ```javascript
 db.students.drop({ writeConcern: { w: 1 } });
 ```
+
+<br>
+<div align="center">
+
+**[⬅️ Back to Express & MongoDB Master](../README.md)**
+
+</div>
