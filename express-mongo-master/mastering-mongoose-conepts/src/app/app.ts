@@ -60,6 +60,37 @@ app.get("/notes/:noteId", async (req: Request, res: Response) => {
   });
 });
 
+// update a  note
+app.patch("/notes/:noteId", async (req: Request, res: Response) => {
+  const noteId = req.params.noteId;
+  const noteToUpdate = req.body;
+
+  console.log("logged");
+
+  const updatedNote = await Note.findByIdAndUpdate(noteId, noteToUpdate, {
+    new: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Note Updated Successfully",
+    data: updatedNote,
+  });
+});
+
+// get a single note
+app.delete("/notes/:noteId", async (req: Request, res: Response) => {
+  const noteId = req.params.noteId;
+
+  const deletedNote = await Note.findByIdAndDelete(noteId);
+
+  res.status(201).json({
+    success: true,
+    message: "Note Deleted Successfully",
+    data: deletedNote,
+  });
+});
+
 // server status
 app.get("/", (req: Request, res: Response) => {
   try {
