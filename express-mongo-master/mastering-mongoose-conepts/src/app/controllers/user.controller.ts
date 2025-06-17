@@ -21,7 +21,7 @@ userRoutes.get("/", async (req: Request, res: Response) => {
 
   res.status(200).json({
     success: true,
-    message: "Users Retrieved Successfully",
+    message: "All Users Retrieved Successfully",
     data: users,
   });
 });

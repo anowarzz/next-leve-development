@@ -6,7 +6,7 @@ const app: Application = express();
 app.use(express.json());
 
 app.use("/notes", notesRoute);
-app.use("/users", userRoutes)
+app.use("/users", userRoutes);
 
 // server status
 app.get("/", (req: Request, res: Response) => {
