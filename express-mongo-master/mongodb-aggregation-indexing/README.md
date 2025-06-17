@@ -25,6 +25,10 @@ This module covers advanced MongoDB concepts including aggregation pipelines, co
 - ✅ Database Indexing & Performance
 - ✅ Compound & Text Indexing
 
+## 📚 Practice Resources
+
+- 🔗 **[Aggregation Practice Queries](./aggregation-queries.md)** - Hands-on practice problems with detailed solutions
+
 ---
 
 <br>
