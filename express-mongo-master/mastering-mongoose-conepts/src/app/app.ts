@@ -1,95 +1,12 @@
 import express, { Application, Request, Response } from "express";
 import { model, Schema } from "mongoose";
+import { notesRoute } from "./controllers/notes.controller";
 
 const app: Application = express();
 app.use(express.json());
 
-const noteSchema = new Schema({
-  title: { type: String, required: true, trim: true },
-  content: { type: String, default: "" },
-  category: {
-    type: String,
-    enum: ["Personal", "Work", "Study", "Other"],
-    default: "Personal",
-  },
-  pinned: {
-    type: Boolean,
-    default: false,
-  },
-  tags: {
-    label: { type: String, required: true },
-    color: { type: String, default: "gray" },
-  },
-});
+app.use("/notes", notesRoute) ;
 
-const Note = model("Note", noteSchema);
-
-// creating a note
-app.post("/note/create-note", async (req: Request, res: Response) => {
-  const body = req.body;
-
-  const savedNote = await Note.create(body);
-
-  res.status(201).json({
-    success: true,
-    message: "Note Created Successfully",
-    data: savedNote,
-  });
-});
-
-// get all notes
-app.get("/notes", async (req: Request, res: Response) => {
-  const notes = await Note.find();
-
-  res.status(201).json({
-    success: true,
-    message: "Notes Retrieved Successfully",
-    data: notes,
-  });
-});
-
-// get a single note
-app.get("/notes/:noteId", async (req: Request, res: Response) => {
-  const noteId = req.params.noteId;
-  const note = await Note.findById(noteId);
-
-  res.status(201).json({
-    success: true,
-    message: "Note Retrieved Successfully",
-    data: note,
-  });
-});
-
-// update a  note
-app.patch("/notes/:noteId", async (req: Request, res: Response) => {
-  const noteId = req.params.noteId;
-  const noteToUpdate = req.body;
-
-  console.log("logged");
-
-  const updatedNote = await Note.findByIdAndUpdate(noteId, noteToUpdate, {
-    new: true,
-  });
-
-  res.status(200).json({
-    success: true,
-    message: "Note Updated Successfully",
-    data: updatedNote,
-  });
-});
-
-// get a single note
-app.delete("/notes/:noteId", async (req: Request, res: Response) => {
-  const noteId = req.params.noteId;
-
-  const deletedNote = await Note.findByIdAndDelete(noteId);
-
-  res.status(201).json({
-    success: true,
-    message: "Note Deleted Successfully",
-    data: deletedNote,
-  });
-});
 
 // server status
 app.get("/", (req: Request, res: Response) => {
