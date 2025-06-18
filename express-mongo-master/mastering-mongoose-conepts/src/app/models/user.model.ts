@@ -1,18 +1,22 @@
 import { model, Schema } from "mongoose";
+import validator from "validator";
 import { IUser } from "./../interfaces/user.interface";
 
 const userSchema = new Schema<IUser>(
   {
     firstName: {
       type: String,
-      required: true,
+      required: [true, `You don not have first name ?`],
       trim: true,
       minlength: [3, `First name must be at least 3 characters, got {VALUE}`],
-      maxlength: [20, `First name must be less than20 characters, got {VALUE}`],
+      maxlength: [
+        20,
+        `First name must be less than 20 characters, got {VALUE}`,
+      ],
     },
     lastName: {
       type: String,
-      required: true,
+      required: [true, `You do not have last name ?`],
       trim: true,
       minlength: [3, `Last name must be at least 3 characters, got {VALUE}`],
       maxlength: [20, `Last name must be less than 20 characters, got {VALUE}`],
@@ -27,8 +31,18 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       trim: true,
-      unique: true,
+      unique: [true, `Email must be unique`],
       lowercase: true,
+      // validate: {
+      //   validator: function (v) {
+      //     // regex for email validation
+      //     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      //   },
+      //   message: function (props) {
+      //     return `${props.value} is not a valid email`;
+      //   },
+      // },
+      validate: [validator.isEmail, `Invalid email format {VALUE}`],
     },
     password: {
       type: String,
@@ -37,7 +51,10 @@ const userSchema = new Schema<IUser>(
     role: {
       type: String,
       uppercase: true,
-      enum: ["USER", "ADMIN", "SUPERADMIN"],
+      enum: {
+        values: ["USER", "ADMIN", "SUPERADMIN"],
+        message: `Role must be one of USER, ADMIN, or SUPERADMIN, got {VALUE}`,
+      },
       default: "USER",
     },
   },
