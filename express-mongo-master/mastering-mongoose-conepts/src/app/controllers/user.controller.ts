@@ -1,18 +1,38 @@
 import express, { Request, Response } from "express";
+import { z } from "zod";
 import { User } from "./../models/user.model";
 
 export const userRoutes = express.Router();
 
+// Zod schema for creating a user
+const createUserZodSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+  role: z.enum(["admin", "user"]).default("user"),
+});
+
 // Create a user
 userRoutes.post("/create-user", async (req: Request, res: Response) => {
-  const userData = req.body;
-  const user = await User.create(userData);
+  try {
+    const body = await createUserZodSchema.parseAsync(req.body);
 
-  res.status(201).json({
-    success: true,
-    message: "User Created Successfully",
-    data: user,
-  });
+    const user = await User.create(body);
+
+    res.status(201).json({
+      success: true,
+      message: "User Created Successfully",
+      user: {},
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: "Invalid User Data",
+      error: error.message,
+      stack: error,
+    });
+  }
 });
 
 // get all users
