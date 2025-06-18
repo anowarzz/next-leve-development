@@ -3,13 +3,48 @@ import { IUser } from "./../interfaces/user.interface";
 
 const userSchema = new Schema<IUser>(
   {
-    firstName: { type: String, required: true, trim: true },
-    lastName: { type: String, required: true, trim: true },
-    email: { type: String, required: true, trim: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ["user", "admin"], default: "user" },
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: [3, `First name must be at least 3 characters, got {VALUE}`],
+      maxlength: [20, `First name must be less than20 characters, got {VALUE}`],
+    },
+    lastName: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: [3, `Last name must be at least 3 characters, got {VALUE}`],
+      maxlength: [20, `Last name must be less than 20 characters, got {VALUE}`],
+    },
+    age: {
+      type: Number,
+      required: true,
+      min: [18, `Age must be at least 18, got {VALUE}`],
+      max: [60, `Age must be less than 60, got {VALUE}`],
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      uppercase: true,
+      enum: ["USER", "ADMIN", "SUPERADMIN"],
+      default: "USER",
+    },
   },
-  { versionKey: false, timestamps: true }
+  {
+    versionKey: false,
+    timestamps: true,
+  }
 );
 
 export const User = model<IUser>("User", userSchema);

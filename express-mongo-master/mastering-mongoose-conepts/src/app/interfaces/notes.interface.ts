@@ -7,6 +7,6 @@ export interface INotes {
     label: string;
     color: string;
   };
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
