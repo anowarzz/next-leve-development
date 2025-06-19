@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { Model, model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import validator from "validator";
 import {
   IAddress,
@@ -79,16 +79,29 @@ const userSchema = new Schema<IUser, UserStaticMethods, UserInstanceMethods>(
     timestamps: true,
   }
 );
-
+// instance method for hashing password
 userSchema.method("hashPassword", async function (plainPassword: string) {
   const password = await bcrypt.hash(plainPassword, 10);
   return password;
 });
 
-
+// static method for hashing password
 userSchema.static("hashPassword", async function (plainPassword) {
   const password = await bcrypt.hash(plainPassword, 10);
   return password;
-})
+});
+
+// pre save hook to hash password before saving
+userSchema.pre("save", async function (next) {
+  this.password = await bcrypt.hash(this.password, 10);
+
+  next();
+});
+
+// post hook
+userSchema.post("save", function (doc) {
+  console.log("Inside post save");
+  console.log(`User ${doc.email} has been created successfully`);
+});
 
 export const User = model<IUser, UserStaticMethods>("User", userSchema);

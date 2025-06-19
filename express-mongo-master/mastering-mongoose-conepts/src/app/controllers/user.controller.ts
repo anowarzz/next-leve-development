@@ -28,8 +28,8 @@ userRoutes.post("/create-user", async (req: Request, res: Response) => {
     const body = req.body;
 
     // ==> Built In and custom static method
-    const password = await User.hashPassword(body.password);
-    body.password = password;
+    // const password = await User.hashPassword(body.password);
+    // body.password = password;
     const user = await User.create(body);
 
     // ==> Built In and custom instance method  <==
