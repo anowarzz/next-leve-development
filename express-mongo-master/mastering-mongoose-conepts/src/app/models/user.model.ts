@@ -5,6 +5,7 @@ import {
   IAddress,
   IUser,
   UserInstanceMethods,
+  UserStaticMethods,
 } from "./../interfaces/user.interface";
 
 const addressSchema = new Schema<IAddress>(
@@ -16,7 +17,7 @@ const addressSchema = new Schema<IAddress>(
   { _id: false, versionKey: false }
 );
 
-const userSchema = new Schema<IUser, Model<IUser>, UserInstanceMethods>(
+const userSchema = new Schema<IUser, UserStaticMethods, UserInstanceMethods>(
   {
     firstName: {
       type: String,
@@ -84,4 +85,10 @@ userSchema.method("hashPassword", async function (plainPassword: string) {
   return password;
 });
 
-export const User = model<IUser>("User", userSchema);
+
+userSchema.static("hashPassword", async function (plainPassword) {
+  const password = await bcrypt.hash(plainPassword, 10);
+  return password;
+})
+
+export const User = model<IUser, UserStaticMethods>("User", userSchema);

@@ -27,11 +27,18 @@ userRoutes.post("/create-user", async (req: Request, res: Response) => {
   try {
     const body = req.body;
 
-    const user = new User(body);
-    const password = await user.hashPassword(body.password);
-    user.password = password;
+    // ==> Built In and custom static method
+    const password = await User.hashPassword(body.password);
+    body.password = password;
+    const user = await User.create(body);
 
-    await user.save();
+    // ==> Built In and custom instance method  <==
+
+    // const user = new User(body) as any;
+    // const password = await user.hashPassword(body.password);
+    // user.password = password;
+
+    // await user.save();
 
     res.status(201).json({
       success: true,
@@ -42,7 +49,6 @@ userRoutes.post("/create-user", async (req: Request, res: Response) => {
     res.status(400).json({
       success: false,
       message: "Invalid User Data",
-      error: error.message,
       stack: error,
     });
   }
