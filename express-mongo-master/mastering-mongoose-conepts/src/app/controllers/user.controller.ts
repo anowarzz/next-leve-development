@@ -9,18 +9,29 @@ const createUserZodSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   email: z.string().email(),
+  age: z
+    .number()
+    .min(18, "Age must be at least 18")
+    .max(60, "Age must be less than 60"),
+  address: z.object({
+    city: z.string(),
+    street: z.string(),
+    zip: z.number(),
+  }),
   password: z.string(),
-  role: z.enum(["USER", "ADMIN", "SUPERADMIN"]).default("USER"),
+  role: z.enum(["user", "admin", "superadmin"]).default("user"),
 });
 
 // Create a user
 userRoutes.post("/create-user", async (req: Request, res: Response) => {
   try {
-    // const zodBody = await createUserZodSchema.parseAsync(req.body);
-
     const body = req.body;
 
-    const user = await User.create(body);
+    const user = new User(body);
+    const password = await user.hashPassword(body.password);
+    user.password = password;
+
+    await user.save();
 
     res.status(201).json({
       success: true,

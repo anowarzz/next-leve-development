@@ -4,7 +4,7 @@ export interface IAddress {
   zip: number;
 }
 
-  export interface IUser {
+export interface IUser {
   firstName: string;
   lastName: string;
   age: number;
@@ -12,4 +12,8 @@ export interface IAddress {
   password: string;
   role: "USER" | "ADMIN" | "SUPERADMIN";
   address: IAddress;
+}
+
+export interface UserInstanceMethods {
+  hashPassword(password: string): Promise<string>;
 }
