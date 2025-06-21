@@ -7,6 +7,7 @@ import {
   UserInstanceMethods,
   UserStaticMethods,
 } from "./../interfaces/user.interface";
+import { Note } from "./notes.model";
 
 const addressSchema = new Schema<IAddress>(
   {
@@ -91,17 +92,38 @@ userSchema.static("hashPassword", async function (plainPassword) {
   return password;
 });
 
-// pre save hook to hash password before saving
+// ==> PRE HOOKS <==
+
+// Pre hook -> Document middleware
 userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 
   next();
 });
 
-// post hook
-userSchema.post("save", function (doc) {
+// Pre-Hook -> Query middleware
+userSchema.pre("find", async function (next) {
+  console.log(this);
+  next();
+});
+
+// ==> POST HOOKS <==
+
+// post hook -> Document middleware
+userSchema.post("save", function (doc, next) {
   console.log("Inside post save");
   console.log(`User ${doc.email} has been created successfully`);
+
+  next();
+});
+
+// post hook -> query middle
+userSchema.post("findOneAndDelete", async function (doc, next) {
+  if (doc) {
+    await Note.deleteMany({ user: doc._id });
+    console.log(`User ${doc.email} has been deleted successfully`);
+  }
+  next();
 });
 
 export const User = model<IUser, UserStaticMethods>("User", userSchema);
