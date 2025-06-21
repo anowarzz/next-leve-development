@@ -78,6 +78,12 @@ const userSchema = new Schema<IUser, UserStaticMethods, UserInstanceMethods>(
   {
     versionKey: false,
     timestamps: true,
+    toJSON: {
+      virtuals: true,
+      toObject: {
+        virtuals: true,
+      },
+    },
   }
 );
 // instance method for hashing password
@@ -110,7 +116,7 @@ userSchema.pre("find", async function (next) {
 // ==> POST HOOKS <==
 
 // post hook -> Document middleware
-userSchema.post("save", function (doc, next) {
+userSchema.post("save", function (doc: IUser, next) {
   console.log("Inside post save");
   console.log(`User ${doc.email} has been created successfully`);
 
@@ -124,6 +130,10 @@ userSchema.post("findOneAndDelete", async function (doc, next) {
     console.log(`User ${doc.email} has been deleted successfully`);
   }
   next();
+});
+
+userSchema.virtual("fullName").get(function (this: IUser) {
+  return `${this.firstName} ${this.lastName}`;
 });
 
 export const User = model<IUser, UserStaticMethods>("User", userSchema);
