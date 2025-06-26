@@ -23,6 +23,15 @@ function UseReducerExample() {
           [action.payload.field]: action.payload.value,
         };
 
+      case "RESET":
+        return initialState;
+
+      case "CLEAR":
+        return {
+          ...state,
+          [action.payload.field]: "",
+        };
+
       default:
         return state;
     }
@@ -40,6 +49,15 @@ function UseReducerExample() {
     });
   };
 
+  const handleClear = (e) => {
+    dispatch({
+      type: "CLEAR",
+      payload: {
+        field: e.target.name,
+      },
+    });
+  };
+
   const handleSubmit = () => {
     console.log("Submitted User Info:", userInfo);
   };
@@ -47,7 +65,7 @@ function UseReducerExample() {
   return (
     <div>
       <div>
-        <label htmlFor="name">Phone</label>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           id="name"
@@ -55,6 +73,9 @@ function UseReducerExample() {
           value={userInfo.name}
           onChange={(e) => handleOnChange(e)}
         />
+        <button name="name" onClick={handleClear}>
+          Clear
+        </button>
       </div>
       <div>
         <label htmlFor="email">Email</label>
@@ -65,6 +86,9 @@ function UseReducerExample() {
           value={userInfo.email}
           onChange={(e) => handleOnChange(e)}
         />
+        <button name="email" onClick={handleClear}>
+          Clear
+        </button>
       </div>
       <div>
         <label htmlFor="phone">Phone</label>
@@ -75,8 +99,11 @@ function UseReducerExample() {
           value={userInfo.phone}
           onChange={(e) => handleOnChange(e)}
         />
+        <button name="phone" onClick={handleClear}>
+          Clear
+        </button>
       </div>
-
+      <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
