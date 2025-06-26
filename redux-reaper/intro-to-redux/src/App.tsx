@@ -5,7 +5,7 @@ function App() {
         <h1>Counte with Redux</h1>
 
         <button>Increment</button>
-        <button>0</button>
+        <div>0</div>
         <button>Decrement</button>
       </div>
     </>
