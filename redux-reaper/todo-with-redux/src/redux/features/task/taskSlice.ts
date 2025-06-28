@@ -23,7 +23,7 @@ const initialState: InitialState = {
       description: "Create and connect with github",
       dueDate: "2025-11",
       isCompleted: false,
-      priority: "High",
+      priority: "Medium",
     },
   ],
   filter: "all",
