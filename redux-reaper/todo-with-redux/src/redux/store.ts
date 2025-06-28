@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
+import taskReducer from "./features/task/taskSlice"
+
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    tasks: taskReducer 
+  },
 });
 
 export default store;
 
 
 
-const type RootState = ReturnType(typeof store.getState() )
-const type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
