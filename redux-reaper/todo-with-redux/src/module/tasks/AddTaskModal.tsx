@@ -16,6 +16,8 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { DialogDescription } from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form";
 
 export function AddTaskModal() {
@@ -32,8 +34,12 @@ export function AddTaskModal() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add New Task</DialogTitle>
+          <DialogTitle>Add Task</DialogTitle>
         </DialogHeader>
+
+        <DialogDescription className="sr-only">
+          Fill up this form to add task
+        </DialogDescription>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -42,9 +48,13 @@ export function AddTaskModal() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Task Title</FormLabel>
+                  <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input
+                      {...field}
+                      className="mb-3"
+                      value={field.value || ""}
+                    />
                   </FormControl>
                 </FormItem>
               )}
@@ -54,9 +64,13 @@ export function AddTaskModal() {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Task Description</FormLabel>
+                  <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Textarea
+                      {...field}
+                      className="mb-3"
+                      value={field.value || ""}
+                    />
                   </FormControl>
                 </FormItem>
               )}
