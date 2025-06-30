@@ -31,36 +31,52 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { addTask } from "@/redux/features/task/taskSlice";
-import { useAppDispatch } from "@/redux/hook";
-import type { ITask } from "@/types";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, FilePenLine } from "lucide-react";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import type { IProps } from "./TaskCard";
+import { useAppDispatch } from "@/redux/hook";
+import { editTask } from "@/redux/features/task/taskSlice";
 
-export function AddTaskModal() {
-  const form = useForm();
+const EditTaskModal = ({ task }: IProps) => {
+  const form = useForm({
+    defaultValues: {
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+      dueDate: task.dueDate,
+    },
+  });
 
-  const dispatch = useAppDispatch();
+const dispatch = useAppDispatch() ;
 
-  const onSubmit : SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    dispatch(addTask(data as ITask));
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    // Dispatch editTask action with updated task data
+    dispatch(
+      editTask({
+        id: task.id,
+        title: data.title,
+        description: data.description,
+        dueDate: data.dueDate,
+        priority: data.priority,
+        isCompleted: task.isCompleted, 
+      })
+    );
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Task</Button>
+        <FilePenLine className="size-5" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Task</DialogTitle>
+          <DialogTitle>Edit Task</DialogTitle>
         </DialogHeader>
 
         <DialogDescription className="sr-only">
-          Fill up this form to add task
+          Fill up this form to edit task
         </DialogDescription>
 
         <Form {...form}>
@@ -77,6 +93,7 @@ export function AddTaskModal() {
                       {...field}
                       className="mb-3"
                       value={field.value || ""}
+                      defaultValue={task.title}
                     />
                   </FormControl>
                 </FormItem>
@@ -94,6 +111,7 @@ export function AddTaskModal() {
                       {...field}
                       className="mb-3"
                       value={field.value || ""}
+                      defaultValue={task.description}
                     />
                   </FormControl>
                 </FormItem>
@@ -110,7 +128,7 @@ export function AddTaskModal() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <FormControl className="w-full">
+                    <FormControl className="w-full" defaultValue={task.priority}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a priority level" />
                       </SelectTrigger>
@@ -119,6 +137,7 @@ export function AddTaskModal() {
                       <SelectItem value="low">Low</SelectItem>
                       <SelectItem value="medium">Medium</SelectItem>
                       <SelectItem value="high">High</SelectItem>
+                    
                     </SelectContent>
                   </Select>
                 </FormItem>
@@ -130,7 +149,7 @@ export function AddTaskModal() {
               control={form.control}
               name="dueDate"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem className="flex flex-col" defaultValue={task.dueDate}>
                   <FormLabel>Due Date</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
@@ -171,13 +190,16 @@ export function AddTaskModal() {
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-  
+
+              <DialogClose asChild>
                 <Button type="submit">Save changes</Button>
-             
+              </DialogClose>
             </DialogFooter>
           </form>
         </Form>
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default EditTaskModal;
